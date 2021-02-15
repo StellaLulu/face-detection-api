@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
+const path = require('path');
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
@@ -10,32 +11,36 @@ const profile = require('./controllers/profile')
 const image = require('./controllers/image')
 
 
-// const db = knex({
-//     client: 'pg',
-//     connection: {
-//       host : '127.0.0.1',
-//       user : 'postgres',
-//       password : '',
-//       database : 'face-detection'
-//     }
-// });
-
-
 const db = knex({
     client: 'pg',
     connection: {
-      connectionString : process.env.DATABASE_URL,
-      ssl : true,
+      host : '127.0.0.1',
+      user : 'postgres',
+      password : '',
+      database : 'face-detection'
     }
 });
+
+
+// const db = knex({
+//     client: 'pg',
+//     connection: {
+//       connectionString : process.env.DATABASE_URL,
+//       ssl : true,
+//     }
+// });
 
 // Simple check of select * from a table
 // db.select('*').from('users').then(data=>{
 //     console.log(data);
 // });
-
 const app = express();
-
+app
+  .use(express.static(path.join(__dirname, 'public')))
+  .set('views', path.join(__dirname, 'views'))
+  .set('view engine', 'ejs')
+  .get('/', (req, res) => res.render('pages/index'))
+  .get('/cool', (req, res) => res.send(cool()))
 
 app.use(bodyParser.json());
 app.use(cors());
