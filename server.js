@@ -11,24 +11,24 @@ const profile = require('./controllers/profile')
 const image = require('./controllers/image')
 
 
-const db = knex({
-    client: 'pg',
-    connection: {
-      host : '127.0.0.1',
-      user : 'postgres',
-      password : '',
-      database : 'face-detection'
-    }
-});
-
-
 // const db = knex({
 //     client: 'pg',
 //     connection: {
-//       connectionString : process.env.DATABASE_URL,
-//       ssl : true,
+//       host : '127.0.0.1',
+//       user : 'postgres',
+//       password : '',
+//       database : 'face-detection'
 //     }
 // });
+
+
+const db = knex({
+    client: 'pg',
+    connection: {
+      connectionString : process.env.DATABASE_URL,
+      ssl : true,
+    }
+});
 
 // Simple check of select * from a table
 // db.select('*').from('users').then(data=>{
