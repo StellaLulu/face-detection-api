@@ -10,7 +10,7 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile')
 const image = require('./controllers/image')
 
-
+// for local PostgreSQL
 // const db = knex({
 //     client: 'pg',
 //     connection: {
@@ -34,6 +34,7 @@ const db = knex({
 // db.select('*').from('users').then(data=>{
 //     console.log(data);
 // });
+
 const app = express();
 app
   .use(express.static(path.join(__dirname, 'public')))
