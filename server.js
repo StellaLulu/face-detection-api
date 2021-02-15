@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
-const path = require('path');
+//const path = require('path');
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
@@ -36,12 +36,12 @@ const db = knex({
 // });
 
 const app = express();
-app
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .get('/cool', (req, res) => res.send(cool()))
+// app
+//   .use(express.static(path.join(__dirname, 'public')))
+//   .set('views', path.join(__dirname, 'views'))
+//   .set('view engine', 'ejs')
+//   .get('/', (req, res) => res.render('pages/index'))
+//   .get('/cool', (req, res) => res.send(cool()))
 
 app.use(bodyParser.json());
 app.use(cors());
